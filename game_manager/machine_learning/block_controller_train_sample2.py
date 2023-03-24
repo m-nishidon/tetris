@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
-
 from datetime import datetime
 import random
 import copy
@@ -448,6 +447,7 @@ class Block_Controller(object):
                 board = self.getBoard(curr_backboard, CurrentShape_class, direction0, x0)
                 board = self.get_reshape_backboard(board)
                 states[(x0, direction0)] = self.get_state_properties(board)
+        print(states)
         return states
 
     #ボードを２次元化
@@ -515,7 +515,7 @@ class Block_Controller(object):
         #self.state = reshape_backboard
 
         next_steps =self.get_next_func(curr_backboard,curr_piece_id,curr_shape_class)
-        
+
         if self.mode=="train" or self.mode=="train_sample" or self.mode=="train_sample2":
             # init parameter
             epsilon = self.final_epsilon + (max(self.num_decay_epochs - self.epoch, 0) * (
